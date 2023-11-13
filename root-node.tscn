@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0pjk30k3dsk1"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_lusht"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p1blc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_44xdm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hlrtp"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3xjlg"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(-0.07, 0)
+zoom = Vector2(50.25, 50.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = SubResource("ImageTexture_lusht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_p1blc")
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+texture = SubResource("CanvasTexture_44xdm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("WorldBoundaryShape2D_hlrtp")
+
+[node name="Area2D" type="Area2D" parent="Enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
+shape = SubResource("WorldBoundaryShape2D_3xjlg")
