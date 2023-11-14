@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0pjk30k3dsk1"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_l3ky4"]
+[ext_resource type="Texture2D" uid="uid://da7l08n2qlvoa" path="res://7513470.png" id="2_u8wp6"]
+[ext_resource type="Texture2D" uid="uid://c5imslnchixaf" path="res://dexjjuy-04cec02e-040b-4549-9d79-9c33569d54bb.png" id="3_g1eqy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3k21"]
+radius = 1.0
+height = 4.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_44xdm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p1blc"]
+height = 29.6296
+
+[sub_resource type="BoxMesh" id="BoxMesh_udotj"]
+size = Vector3(3.215, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nel1"]
+size = Vector2(72, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_l3ky4")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(-0.07, 0)
+zoom = Vector2(7.895, 7.895)
+
+[node name="amongus" type="Sprite2D" parent="Player"]
+position = Vector2(-4.29153e-06, -4)
+scale = Vector2(0.00781248, 0.00781248)
+texture = ExtResource("2_u8wp6")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D" groups=["Player"]]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_i3k21")
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+texture = SubResource("CanvasTexture_44xdm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("CapsuleShape2D_p1blc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(-3.8147e-06, 18)
+scale = Vector2(22.395, 29.5)
+mesh = SubResource("BoxMesh_udotj")
+texture = ExtResource("3_g1eqy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["Ground"]]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_0nel1")
+one_way_collision_margin = 0.0
+debug_color = Color(0.827451, 0.0980392, 0.92549, 0.419608)
+
+[connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dstnnwcr1s1uh"]
+
+[ext_resource type="Script" path="res://Scripts/spikes.gd" id="1_52ix1"]
+[ext_resource type="Texture2D" uid="uid://b16lp3w2xo5yo" path="res://1104946800810541227.png" id="2_ohh53"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1nt6t"]
+radius = 44.2957
+height = 131.347
+
+[node name="spikes" type="Node2D"]
+scale = Vector2(0.0400006, 0.0400006)
+script = ExtResource("1_52ix1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ohh53")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+polygon = PackedVector2Array(8.35921, 48.4367, 44.9197, 48.6016, 43.5377, -19.9759, 20.38, -18.2081, 4.64683, -21.0365, -10.7327, -23.3346, -37.7795, -48.7905, -43.2596, -48.7905, -43.2596, -19.9759, -24.6981, 17.8543, -38.4867, 22.097, -41.3151, 32.8804, -32.1227, 36.0623, -20.6322, 34.2946, -27.1729, 48.2599)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.04283, 1.56424)
+shape = SubResource("CapsuleShape2D_1nt6t")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

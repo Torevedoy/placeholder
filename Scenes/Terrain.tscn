@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx1b28mfnshq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nel1"]
+size = Vector2(36.781, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uens4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2e5g"]
+size = Vector2(17.6768, 0.957699)
+
+[sub_resource type="BoxMesh" id="BoxMesh_05le0"]
+
+[node name="Ground" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Ground"]]
+position = Vector2(-17.6095, 4)
+shape = SubResource("RectangleShape2D_0nel1")
+one_way_collision_margin = 0.0
+debug_color = Color(0.827451, 0.0980392, 0.92549, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-17.6013, 3.99124)
+scale = Vector2(36.7788, 1)
+mesh = SubResource("BoxMesh_uens4")
+
+[node name="Ground 2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground 2"]
+position = Vector2(12.9715, 4.001)
+shape = SubResource("RectangleShape2D_k2e5g")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Ground 2"]
+position = Vector2(12.9978, 4.0194)
+scale = Vector2(17.6518, 1)
+mesh = SubResource("BoxMesh_05le0")
